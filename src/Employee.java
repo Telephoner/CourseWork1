@@ -2,6 +2,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Employee {
+    static int id = 0;
+
     private String employeeName;
     private int salary;
     private String department;
@@ -10,6 +12,7 @@ public class Employee {
         this.employeeName = employeeName;
         this.salary = salary;
         this.department = department;
+        id++;
     }
 
     public String getEmployeeName() {
@@ -37,6 +40,7 @@ public class Employee {
         this.department = department;
     }
 
+
     @Override
     public String toString() {
         return "Сотрудник: " +
@@ -55,6 +59,6 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeName);
+        return Objects.hash(id);
     }
 }
