@@ -2,18 +2,26 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Employee {
-    private String employeeName;
+    private static int counter = 0;
+    static Integer id;
+
+    private String name;
+    private String middleName;
+    private String lastName;
     private int salary;
     private String department;
 
-    public Employee(String employeeName, int salary, String department) {
-        this.employeeName = employeeName;
+    public Employee(String lastName, String name, String middleName, int salary, String department) {
+        this.name = name;
+        this.middleName = middleName;
+        this.lastName = lastName;
         this.salary = salary;
         this.department = department;
+        this.id = counter++;
     }
 
-    public String getEmployeeName() {
-        return this.employeeName;
+    public String getEmployeeFullName() {
+        return this.name + " " + this.middleName + " " + this.lastName;
     }
 
     public int getSalary() {
@@ -25,10 +33,6 @@ public class Employee {
         return department;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
     public void setSalary(int salary) {
         this.salary = salary;
     }
@@ -37,10 +41,11 @@ public class Employee {
         this.department = department;
     }
 
+
     @Override
     public String toString() {
         return "Сотрудник: " +
-                employeeName +
+                getEmployeeFullName() +
                 ", заработная плата: " + salary +
                 ", отдел: " + department + '.';
     }
@@ -50,11 +55,11 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(employeeName, employee.employeeName);
+        return Objects.equals(id, employee.getEmployeeFullName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeName);
+        return Objects.hash(id);
     }
 }
